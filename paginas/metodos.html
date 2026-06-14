@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcular — NumIntegra</title>
+  <link rel="stylesheet" href="../css/estilos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Num<span>Integra</span></a>
+    <ul class="nav-enlaces">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="evidencias.html">Evidencias</a></li>
+      <li><a href="metodos.html" class="activo">Calcular</a></li>
+      <li><a href="ejercicio.html">Ejercicio</a></li>
+      <li><a href="acerca.html">Acerca de</a></li>
+    </ul>
+  </nav>
+
+  <div class="contenedor">
+
+    <h2 style="font-size:1.6rem; font-weight:800; margin-bottom:0.25rem;">Cálculo del Experimento</h2>
+    <p style="color:var(--color-texto-suave); margin-bottom:2rem; font-size:0.9rem;">
+      Datos obtenidos del simulador "Rampa: Fuerzas y Movimiento" (PhET). Se integra la curva
+      <strong>velocidad vs. tiempo</strong> usando los 3 métodos. El área resultante representa
+      la <strong style="color:var(--color-texto)">distancia total recorrida</strong>, que se
+      compara contra la distancia real medida (15.74 m).
+    </p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+
+      <!-- ── Tabla de datos (solo lectura) ── -->
+      <div class="tarjeta">
+        <div class="titulo-seccion">📋 Datos a integrar (velocidad)</div>
+        <p style="color:var(--color-texto-suave); font-size:0.82rem; margin-bottom:1rem;">
+          13 puntos (tiempo, velocidad). La velocidad fue medida directamente en el simulador
+          (lectura instantánea) para cada segundo (ver tabla completa en
+          <a href="evidencias.html" style="color:var(--color-acento);">Evidencias</a>).
+        </p>
+        <table class="tabla-datos">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tiempo (s)</th>
+              <th>Velocidad (m/s)</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoTablaDatos"></tbody>
+        </table>
+      </div>
+
+      <!-- ── Fórmulas ── -->
+      <div class="tarjeta">
+        <div class="titulo-seccion">📐 Fórmulas aplicadas</div>
+
+        <div style="margin-bottom:1.25rem;">
+          <span class="badge badge-trapecio">Trapecio</span>
+          <div class="formula-box" style="margin-top:0.5rem; font-size:0.8rem;">
+            I ≈ (h/2) × [f(x₀) + 2·f(x₁) + ... + f(xₙ)]
+          </div>
+        </div>
+
+        <hr class="separador">
+
+        <div style="margin-bottom:1.25rem;">
+          <span class="badge badge-s13">Simpson 1/3</span>
+          <div class="formula-box" style="margin-top:0.5rem; font-size:0.8rem;">
+            I ≈ (h/3) × [f(x₀) + 4·f(x₁) + 2·f(x₂) + ... + f(xₙ)]
+          </div>
+        </div>
+
+        <hr class="separador">
+
+        <div>
+          <span class="badge badge-s38">Simpson 3/8</span>
+          <div class="formula-box" style="margin-top:0.5rem; font-size:0.8rem;">
+            I ≈ (3h/8) × [f(x₀) + 3·f(x₁) + 3·f(x₂) + 2·f(x₃) + ... + f(xₙ)]
+          </div>
+        </div>
+      </div>
+
+    </div><!-- fin grid -->
+
+    <!-- ── Resultados ── -->
+    <div style="margin-top:2rem;">
+
+      <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem;">Resultados de Integración</h3>
+
+      <div class="grid-resultados">
+        <div class="caja-resultado">
+          <div class="resultado-etiqueta"><span class="badge badge-trapecio">Trapecio</span></div>
+          <div class="resultado-valor" id="valorTrapecio" style="color:var(--color-trapecio);">—</div>
+          <div style="font-size:0.75rem; color:var(--color-texto-suave); margin-top:0.25rem; font-family:var(--fuente-mono);">m (distancia recorrida)</div>
+        </div>
+
+        <div class="caja-resultado" style="border-color:rgba(247,183,49,0.2); background:rgba(247,183,49,0.05);">
+          <div class="resultado-etiqueta"><span class="badge badge-s13">Simpson 1/3</span></div>
+          <div class="resultado-valor" id="valorSimpson13" style="color:var(--color-s13);">—</div>
+          <div style="font-size:0.75rem; color:var(--color-texto-suave); margin-top:0.25rem; font-family:var(--fuente-mono);">m (distancia recorrida)</div>
+        </div>
+
+        <div class="caja-resultado" style="border-color:rgba(224,92,130,0.2); background:rgba(224,92,130,0.05);">
+          <div class="resultado-etiqueta"><span class="badge badge-s38">Simpson 3/8</span></div>
+          <div class="resultado-valor" id="valorSimpson38" style="color:var(--color-s38);">—</div>
+          <div style="font-size:0.75rem; color:var(--color-texto-suave); margin-top:0.25rem; font-family:var(--fuente-mono);">m (distancia recorrida)</div>
+        </div>
+      </div>
+
+      <!-- Comparación contra distancia real medida -->
+      <div class="tarjeta" style="margin-top:1.5rem;">
+        <div class="titulo-seccion">📊 Verificación contra la distancia real</div>
+        <p style="color:var(--color-texto-suave); font-size:0.82rem; margin-bottom:0.5rem;">
+          La distancia total recorrida, medida directamente en el simulador, fue
+          <strong style="color:var(--color-acento)" id="distanciaRealTexto">—</strong>.
+          Cada método debería aproximarse a este valor.
+        </p>
+        <table class="tabla-errores">
+          <thead>
+            <tr><th>Método</th><th>Distancia calculada (m)</th><th>Error vs. real (%)</th><th>Evaluación</th></tr>
+          </thead>
+          <tbody id="cuerpoTablaErrores"></tbody>
+        </table>
+
+        <div style="margin-top:1rem; padding:0.8rem 1rem; background:rgba(0,217,166,0.05); border-radius:var(--radio); border:1px solid rgba(0,217,166,0.15);">
+          <div style="font-size:0.75rem; color:var(--color-acento); font-weight:700; margin-bottom:0.3rem; letter-spacing:1px; text-transform:uppercase;">🏆 Conclusión</div>
+          <div id="textoConclusion" style="font-size:0.88rem; color:var(--color-texto-suave);">—</div>
+        </div>
+      </div>
+
+      <!-- Gráfica -->
+      <div id="contenedor-grafica" style="margin-top:1.5rem;">
+        <div class="titulo-seccion">📈 Gráfica comparativa — Velocidad vs. Tiempo</div>
+        <canvas id="graficaPrincipal" height="380"></canvas>
+        <div id="leyendaGrafica" class="leyenda-grafica" style="margin-top:1rem;"></div>
+      </div>
+
+    </div>
+
+  </div><!-- fin .contenedor -->
+
+  <!-- Scripts -->
+  <script src="../js/datos-experimento.js"></script>
+  <script src="../js/trapecio.js"></script>
+  <script src="../js/simpson13.js"></script>
+  <script src="../js/simpson38.js"></script>
+  <script src="../js/graficas.js"></script>
+  <script>
+    // ── Llenar tabla de datos (tiempo, velocidad) ──
+    const cuerpoDatos = document.getElementById('cuerpoTablaDatos');
+    cuerpoDatos.innerHTML = DATOS_EXPERIMENTO.tiempos.map(function (t, i) {
+      return `<tr><td>${i + 1}</td><td>${t.toFixed(2)}</td><td>${DATOS_EXPERIMENTO.velocidades[i].toFixed(2)}</td></tr>`;
+    }).join('');
+
+    // ── Calcular los 3 métodos sobre velocidad vs tiempo ──
+    const ejeX = DATOS_EXPERIMENTO.tiempos;
+    const ejeY = DATOS_EXPERIMENTO.velocidades;
+    const distanciaReal = DATOS_EXPERIMENTO.distanciaTotalReal;
+
+    const resTrapecio  = calcularTrapecio(ejeX, ejeY);
+    const resSimpson13 = calcularSimpson13(ejeX, ejeY);
+    const resSimpson38 = calcularSimpson38(ejeX, ejeY);
+
+    // ── Mostrar valores (cada uno es una distancia, en metros) ──
+    document.getElementById('valorTrapecio').textContent  = resTrapecio.resultado.toFixed(6);
+    document.getElementById('valorSimpson13').textContent = resSimpson13.resultado.toFixed(6);
+    document.getElementById('valorSimpson38').textContent = resSimpson38.resultado.toFixed(6);
+
+    // ── Error de cada método respecto a la distancia REAL medida ──
+    function errorPorcentual(valor, ref) {
+      return Math.abs((ref - valor) / ref) * 100;
+    }
+
+    const errorTrapecio = errorPorcentual(resTrapecio.resultado, distanciaReal);
+    const errorS13      = errorPorcentual(resSimpson13.resultado, distanciaReal);
+    const errorS38      = errorPorcentual(resSimpson38.resultado, distanciaReal);
+
+    // ── Texto de distancia real ──
+    document.getElementById('distanciaRealTexto').textContent = distanciaReal.toFixed(2) + ' m';
+
+    // ── Tabla de comparación ──
+    const filas = [
+      { nombre: 'Trapecio',    badge: 'badge-trapecio', valor: resTrapecio.resultado,  error: errorTrapecio },
+      { nombre: 'Simpson 1/3', badge: 'badge-s13',      valor: resSimpson13.resultado, error: errorS13 },
+      { nombre: 'Simpson 3/8', badge: 'badge-s38',      valor: resSimpson38.resultado, error: errorS38 }
+    ];
+
+    document.getElementById('cuerpoTablaErrores').innerHTML = filas.map(function (f) {
+      const evaluacion = f.error < 1 ? '✓ Excelente' : (f.error < 5 ? '~ Bueno' : '⚠ Aceptable');
+      return `<tr><td><span class="badge ${f.badge}">${f.nombre}</span></td><td>${f.valor.toFixed(4)}</td><td>${f.error.toFixed(4)} %</td><td>${evaluacion}</td></tr>`;
+    }).join('');
+
+    // ── Conclusión automática ──
+    const errores = { 'Trapecio': errorTrapecio, 'Simpson 1/3': errorS13, 'Simpson 3/8': errorS38 };
+    const mejor = Object.keys(errores).reduce((a, b) => errores[a] < errores[b] ? a : b);
+    document.getElementById('textoConclusion').textContent =
+      `El método más cercano a la distancia real (${distanciaReal.toFixed(2)} m) es ${mejor}, ` +
+      `con un error del ${errores[mejor].toFixed(4)}%. Esto confirma que la integración ` +
+      `numérica de la velocidad reconstruye correctamente la distancia recorrida.`;
+
+    // ── Gráfica ──
+    dibujarGraficaComparativa(ejeX, ejeY, 'Tiempo (s)', 'Velocidad (m/s)');
+    actualizarLeyenda();
+  </script>
+
+</body>
+</html>

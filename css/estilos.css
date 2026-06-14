@@ -1,0 +1,450 @@
+/* ============================================================
+   NumIntegra - Estilos Principales
+   Proyecto Final de Análisis de Técnicas Numéricas
+   Autores: Juan David Martínez Zuluaga, Lucia Isabel González Pinzón
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+:root {
+  --color-fondo: #0d1117;
+  --color-panel: #161b22;
+  --color-borde: #30363d;
+  --color-acento: #00d9a6;
+  --color-acento2: #f7b731;
+  --color-acento3: #e05c82;
+  --color-texto: #e6edf3;
+  --color-texto-suave: #8b949e;
+  --color-trapecio: #00d9a6;
+  --color-s13: #f7b731;
+  --color-s38: #e05c82;
+  --fuente-titulo: 'Syne', sans-serif;
+  --fuente-mono: 'Space Mono', monospace;
+  --radio: 10px;
+  --sombra: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-titulo);
+  min-height: 100vh;
+}
+
+/* --- Navegación --- */
+nav {
+  background: var(--color-panel);
+  border-bottom: 1px solid var(--color-borde);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-acento);
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--color-texto); }
+
+.nav-enlaces { display: flex; gap: 0.5rem; list-style: none; }
+
+.nav-enlaces a {
+  color: var(--color-texto-suave);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radio);
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.nav-enlaces a:hover, .nav-enlaces a.activo {
+  color: var(--color-acento);
+  background: rgba(0, 217, 166, 0.1);
+}
+
+/* --- Layout general --- */
+.contenedor { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.tarjeta {
+  background: var(--color-panel);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  box-shadow: var(--sombra);
+}
+
+.titulo-seccion {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-acento);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titulo-seccion::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--color-acento);
+  border-radius: 2px;
+}
+
+/* --- Tarjetas grandes de navegación (estilo "Hola, investigador") --- */
+.grid-accesos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.acceso-card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--color-texto);
+  transition: all 0.2s;
+  display: block;
+}
+
+.acceso-card:hover {
+  border-color: var(--color-acento);
+  transform: translateY(-3px);
+  box-shadow: var(--sombra);
+}
+
+.acceso-icono {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.acceso-titulo { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem; }
+.acceso-desc { font-size: 0.85rem; color: var(--color-texto-suave); }
+
+/* --- Tabla de datos --- */
+.tabla-datos {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fuente-mono);
+  font-size: 0.9rem;
+}
+
+.tabla-datos th {
+  background: rgba(0, 217, 166, 0.1);
+  color: var(--color-acento);
+  padding: 0.6rem 1rem;
+  text-align: center;
+  border: 1px solid var(--color-borde);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tabla-datos td {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-borde);
+  text-align: center;
+  color: var(--color-texto);
+}
+
+.tabla-datos tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* --- Botones --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: var(--radio);
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+.btn-primario { background: var(--color-acento); color: #0d1117; }
+.btn-primario:hover {
+  background: #00f0b8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 217, 166, 0.3);
+}
+
+.btn-secundario {
+  background: transparent;
+  color: var(--color-texto-suave);
+  border: 1px solid var(--color-borde);
+}
+.btn-secundario:hover { color: var(--color-texto); border-color: var(--color-texto-suave); }
+
+/* --- Resultados --- */
+.caja-resultado {
+  background: rgba(0, 217, 166, 0.05);
+  border: 1px solid rgba(0, 217, 166, 0.2);
+  border-radius: var(--radio);
+  padding: 1rem 1.5rem;
+  font-family: var(--fuente-mono);
+}
+
+.resultado-valor { font-size: 1.8rem; font-weight: 700; color: var(--color-acento); }
+
+.resultado-etiqueta {
+  font-size: 0.75rem;
+  color: var(--color-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+
+/* --- Badges --- */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-trapecio {
+  background: rgba(0, 217, 166, 0.15);
+  color: var(--color-trapecio);
+  border: 1px solid rgba(0, 217, 166, 0.3);
+}
+
+.badge-s13 {
+  background: rgba(247, 183, 49, 0.15);
+  color: var(--color-s13);
+  border: 1px solid rgba(247, 183, 49, 0.3);
+}
+
+.badge-s38 {
+  background: rgba(224, 92, 130, 0.15);
+  color: var(--color-s38);
+  border: 1px solid rgba(224, 92, 130, 0.3);
+}
+
+.grid-resultados {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 700px) {
+  .grid-resultados { grid-template-columns: 1fr; }
+  nav { padding: 0 1rem; }
+  .nav-enlaces a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+}
+
+/* --- Gráfica --- */
+#contenedor-grafica {
+  background: var(--color-panel);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+canvas { border-radius: 6px; }
+
+/* --- Tabla de errores --- */
+.tabla-errores {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fuente-mono);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.tabla-errores th {
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-borde);
+  color: var(--color-texto-suave);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tabla-errores td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+}
+
+/* --- Alertas --- */
+.alerta {
+  padding: 0.8rem 1rem;
+  border-radius: var(--radio);
+  font-size: 0.88rem;
+  margin-top: 1rem;
+  display: none;
+}
+
+.alerta-error {
+  background: rgba(224, 92, 130, 0.1);
+  border: 1px solid rgba(224, 92, 130, 0.3);
+  color: var(--color-acento3);
+}
+
+.alerta-exito {
+  background: rgba(0, 217, 166, 0.1);
+  border: 1px solid rgba(0, 217, 166, 0.3);
+  color: var(--color-acento);
+}
+
+.alerta.visible { display: block; }
+
+hr.separador {
+  border: none;
+  border-top: 1px solid var(--color-borde);
+  margin: 1.5rem 0;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animar { animation: aparecer 0.4s ease forwards; }
+
+.leyenda-grafica {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--color-texto-suave);
+}
+
+.leyenda-linea { width: 24px; height: 3px; border-radius: 2px; }
+
+/* --- Acerca de --- */
+.acerca-tarjeta { text-align: center; padding: 2.5rem; }
+
+.acerca-logo {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-acento);
+  letter-spacing: -2px;
+  margin-bottom: 0.5rem;
+}
+
+.acerca-version {
+  font-family: var(--fuente-mono);
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 2rem;
+}
+
+.autores-lista {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.autor-chip {
+  background: rgba(0, 217, 166, 0.08);
+  border: 1px solid rgba(0, 217, 166, 0.25);
+  border-radius: 40px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  color: var(--color-texto);
+}
+
+/* --- Código inline --- */
+code {
+  font-family: var(--fuente-mono);
+  background: rgba(0,217,166,0.1);
+  color: var(--color-acento);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* --- Cajas de fórmula --- */
+.formula-box {
+  background: #0d1117;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1rem 1.5rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.85rem;
+  color: var(--color-acento2);
+  margin-top: 0.5rem;
+  line-height: 1.8;
+}
+
+/* --- Galería de evidencias --- */
+.galeria-evidencias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.evidencia-item {
+  background: var(--color-fondo);
+  border: 1px dashed var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-texto-suave);
+  font-size: 0.85rem;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.evidencia-item img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+/* --- Caja de resultado individual (ejercicio) --- */
+.resultado-comparacion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}

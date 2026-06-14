@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NumIntegra — Integración Numérica</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ── Barra de navegación ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">Num<span>Integra</span></a>
+    <ul class="nav-enlaces">
+      <li><a href="index.html" class="activo">Inicio</a></li>
+      <li><a href="paginas/evidencias.html">Evidencias</a></li>
+      <li><a href="paginas/metodos.html">Calcular</a></li>
+      <li><a href="paginas/ejercicio.html">Ejercicio</a></li>
+      <li><a href="paginas/acerca.html">Acerca de</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Contenido principal ── -->
+  <div class="contenedor">
+
+    <!-- Hero -->
+    <div style="text-align:center; padding: 4rem 1rem 2rem;">
+      <div style="font-family: var(--fuente-mono); font-size:0.8rem; color:var(--color-acento); letter-spacing:3px; text-transform:uppercase; margin-bottom:1rem;">
+        Análisis de Técnicas Numéricas
+      </div>
+      <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight:800; letter-spacing:-2px; line-height:1.1; margin-bottom:1.5rem;">
+        Integración<br><span style="color:var(--color-acento);">Numérica</span>
+      </h1>
+      <p style="color:var(--color-texto-suave); max-width:560px; margin:0 auto; font-size:1.05rem; line-height:1.7;">
+        Aplicación de los métodos del <strong style="color:var(--color-trapecio)">Trapecio</strong>,
+        <strong style="color:var(--color-s13)">Simpson 1/3</strong> y
+        <strong style="color:var(--color-s38)">Simpson 3/8</strong>
+        sobre datos reales obtenidos de un experimento físico, y sobre un ejercicio
+        de referencia con solución analítica conocida.
+      </p>
+    </div>
+
+    <!-- Accesos principales -->
+    <div class="grid-accesos">
+
+      <a href="paginas/evidencias.html" class="acceso-card animar">
+        <div class="acceso-icono" style="background:rgba(224,92,130,0.15);">📷</div>
+        <div class="acceso-titulo">Evidencias</div>
+        <div class="acceso-desc">Datos y obtención del experimento</div>
+      </a>
+
+      <a href="paginas/metodos.html" class="acceso-card animar" style="animation-delay:0.1s;">
+        <div class="acceso-icono" style="background:rgba(0,217,166,0.15);">🧮</div>
+        <div class="acceso-titulo">Calcular</div>
+        <div class="acceso-desc">Resultados del experimento</div>
+      </a>
+
+      <a href="paginas/ejercicio.html" class="acceso-card animar" style="animation-delay:0.2s;">
+        <div class="acceso-icono" style="background:rgba(247,183,49,0.15);">📘</div>
+        <div class="acceso-titulo">Ejercicio</div>
+        <div class="acceso-desc">Caso de referencia con solución exacta</div>
+      </a>
+
+    </div>
+
+    <!-- Tarjetas de los 3 métodos -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin: 2rem 0;">
+
+      <div class="tarjeta animar">
+        <div style="font-size:1.5rem; margin-bottom:0.75rem;">📐</div>
+        <span class="badge badge-trapecio" style="margin-bottom:0.75rem; display:inline-block;">Trapecio</span>
+        <h3 style="font-size:1rem; margin-bottom:0.5rem;">Regla del Trapecio</h3>
+        <p style="color:var(--color-texto-suave); font-size:0.88rem; line-height:1.6;">
+          Aproxima el área dividiendo la región en trapecios entre cada par de puntos consecutivos.
+        </p>
+        <div class="formula-box" style="margin-top:1rem;">
+          I ≈ (h/2) × [f(x₀) + 2f(x₁) + ... + f(xₙ)]
+        </div>
+      </div>
+
+      <div class="tarjeta animar" style="animation-delay:0.1s;">
+        <div style="font-size:1.5rem; margin-bottom:0.75rem;">〜</div>
+        <span class="badge badge-s13" style="margin-bottom:0.75rem; display:inline-block;">Simpson 1/3</span>
+        <h3 style="font-size:1rem; margin-bottom:0.5rem;">Regla de Simpson 1/3</h3>
+        <p style="color:var(--color-texto-suave); font-size:0.88rem; line-height:1.6;">
+          Usa parábolas en grupos de 3 puntos. Más preciso que el Trapecio.
+        </p>
+        <div class="formula-box" style="margin-top:1rem;">
+          I ≈ (h/3) × [f(x₀) + 4f(x₁) + 2f(x₂) + ... + f(xₙ)]
+        </div>
+      </div>
+
+      <div class="tarjeta animar" style="animation-delay:0.2s;">
+        <div style="font-size:1.5rem; margin-bottom:0.75rem;">〰</div>
+        <span class="badge badge-s38" style="margin-bottom:0.75rem; display:inline-block;">Simpson 3/8</span>
+        <h3 style="font-size:1rem; margin-bottom:0.5rem;">Regla de Simpson 3/8</h3>
+        <p style="color:var(--color-texto-suave); font-size:0.88rem; line-height:1.6;">
+          Usa polinomios de grado 3 en grupos de 4 puntos.
+        </p>
+        <div class="formula-box" style="margin-top:1rem;">
+          I ≈ (3h/8) × [f(x₀) + 3f(x₁) + 3f(x₂) + ... + f(xₙ)]
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Descripción del experimento -->
+    <div class="tarjeta" style="margin-bottom:2rem;">
+      <div class="titulo-seccion">🧪 El Experimento</div>
+      <p style="color:var(--color-texto-suave); line-height:1.8; font-size:0.95rem;">
+        Se utilizó el simulador <strong style="color:var(--color-texto)">"Rampa: Fuerzas y Movimiento"</strong> de PhET
+        para medir, cada segundo, la <strong>distancia recorrida</strong> y la
+        <strong>velocidad instantánea</strong> de un objeto deslizándose por una rampa con fricción.
+        NumIntegra aplica los tres métodos de integración numérica sobre la curva
+        <strong style="color:var(--color-texto)">velocidad vs. tiempo</strong>,
+        cuya área bajo la curva representa la <strong style="color:var(--color-texto)">distancia total recorrida</strong>
+        — y la compara contra la distancia real medida directamente, validando así la precisión
+        de cada método. Adicionalmente, se incluye un ejercicio de referencia con solución
+        analítica exacta para una segunda validación.
+      </p>
+    </div>
+
+  </div><!-- fin .contenedor -->
+
+</body>
+</html>

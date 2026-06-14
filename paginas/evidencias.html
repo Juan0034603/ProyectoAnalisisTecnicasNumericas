@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidencias — NumIntegra</title>
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">Num<span>Integra</span></a>
+    <ul class="nav-enlaces">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="evidencias.html" class="activo">Evidencias</a></li>
+      <li><a href="metodos.html">Calcular</a></li>
+      <li><a href="ejercicio.html">Ejercicio</a></li>
+      <li><a href="acerca.html">Acerca de</a></li>
+    </ul>
+  </nav>
+
+  <div class="contenedor">
+
+    <h2 style="font-size:1.6rem; font-weight:800; margin-bottom:0.25rem;">Obtención de Datos del Experimento</h2>
+    <p style="color:var(--color-texto-suave); margin-bottom:2rem; font-size:0.9rem;">
+      A continuación se describe el procedimiento y las capturas obtenidas durante la
+      simulación utilizada para generar los datos experimentales del proyecto.
+    </p>
+
+    <!-- Descripción del procedimiento -->
+    <div class="tarjeta" style="margin-bottom:1.5rem;">
+      <div class="titulo-seccion">🧪 Procedimiento</div>
+      <p style="color:var(--color-texto-suave); font-size:0.9rem; line-height:1.8; margin-bottom:1rem;">
+        Se utilizó el simulador <strong style="color:var(--color-texto)">"Rampa: Fuerzas y Movimiento"</strong>
+        de PhET Interactive Simulations
+        (<a href="https://phet.colorado.edu/es/simulations/the-ramp" target="_blank" style="color:var(--color-acento);">phet.colorado.edu/es/simulations/the-ramp</a>).
+      </p>
+      <ol style="color:var(--color-texto-suave); font-size:0.88rem; line-height:2; padding-left:1.2rem;">
+        <li>Se seleccionó un objeto y se ajustó el ángulo de la rampa a <strong>13.3°</strong>, con una posición inicial de <strong>14.95 m</strong>.</li>
+        <li>Se activó el cronómetro integrado de la simulación y se inició el movimiento.</li>
+        <li>Usando los controles de "Pausa" y "Ralentizar", se registró en cada segundo la
+            <strong>distancia recorrida acumulada</strong> y la <strong>velocidad instantánea</strong>
+            (lectura directa del panel de la simulación).</li>
+        <li>Se tomaron 14 lecturas, desde t = 0 s hasta t = 13 s.</li>
+        <li>En t = 13 s la velocidad mostró una caída brusca (de 2.10 a 1.40 m/s), señal de que el
+            objeto llegó al final de la rampa. Por esto se usa el tramo <strong>t = 0 a 12 s</strong>
+            (13 puntos, 12 intervalos) para el análisis, lo cual además permite aplicar Simpson 1/3
+            y Simpson 3/8 en su forma directa (12 es par y múltiplo de 3). Esta tabla de velocidad
+            vs. tiempo es la que se integra en la sección
+            <a href="metodos.html" style="color:var(--color-acento);">Calcular</a>.</li>
+      </ol>
+    </div>
+
+    <!-- Galería de capturas -->
+    <div class="tarjeta" style="margin-bottom:1.5rem;">
+      <div class="titulo-seccion">📷 Capturas de la simulación</div>
+      <p style="color:var(--color-texto-suave); font-size:0.85rem; margin-bottom:1rem;">
+        Espacio reservado para las capturas tomadas durante el experimento (mínimo 4-5 representativas:
+        inicio, medio y fin del recorrido).
+      </p>
+      <div class="galeria-evidencias">
+        <div class="evidencia-item">📸<br>Captura inicial<br>t = 0 s</div>
+        <div class="evidencia-item">📸<br>Captura intermedia<br>t ≈ 6 s</div>
+        <div class="evidencia-item">📸<br>Captura final<br>t = 12 s</div>
+        <div class="evidencia-item">📸<br>Configuración de la rampa<br>(ángulo, objeto, fricción)</div>
+      </div>
+      <p style="color:var(--color-texto-suave); font-size:0.78rem; margin-top:0.5rem;">
+        💡 Para reemplazar: inserta <code>&lt;img src="ruta/captura.png" alt="..."&gt;</code> dentro
+        de cada <code>.evidencia-item</code> en este archivo.
+      </p>
+    </div>
+
+    <!-- Nota sobre evidencias completas -->
+    <div class="tarjeta" style="margin-bottom:1.5rem; border-color:rgba(0,217,166,0.25); background:rgba(0,217,166,0.04);">
+      <div class="titulo-seccion" style="font-size:0.85rem;">📁 Evidencias completas</div>
+      <p style="color:var(--color-texto-suave); font-size:0.85rem; line-height:1.7;">
+        Las 14 capturas correspondientes a cada uno de los puntos registrados (t = 0 s a t = 13 s (se usan t = 0 a 12 en el análisis))
+        se incluyen como anexo en la carpeta <code>evidencias-completas/</code> del proyecto y en el
+        informe técnico (Overleaf), respaldando cada valor de la tabla de datos.
+      </p>
+    </div>
+
+    <!-- Tabla de datos experimentales -->
+    <div class="tarjeta" style="margin-bottom:1.5rem;">
+      <div class="titulo-seccion">📊 Datos Medidos — Distancia Acumulada</div>
+      <p style="color:var(--color-texto-suave); font-size:0.85rem; margin-bottom:1rem;">
+        Distancia recorrida acumulada, leída directamente del simulador en el tramo
+        t = 0 a t = 12 s. La distancia total en ese tramo fue de
+        <strong style="color:var(--color-acento)">13.73 m</strong>.
+      </p>
+      <table class="tabla-datos">
+        <thead>
+          <tr><th>Tiempo (s)</th><th>Distancia acumulada (m)</th></tr>
+        </thead>
+        <tbody id="cuerpoTablaDistancia"></tbody>
+      </table>
+    </div>
+
+    <!-- Tabla de velocidades medidas -->
+    <div class="tarjeta">
+      <div class="titulo-seccion">📊 Datos Medidos — Velocidad</div>
+      <p style="color:var(--color-texto-suave); font-size:0.85rem; margin-bottom:1rem;">
+        Velocidad instantánea (m/s) leída directamente del simulador en cada segundo
+        (valor absoluto; el signo original indica solo la dirección sobre la rampa).
+        Esta es la curva que se integra en
+        <a href="metodos.html" style="color:var(--color-acento);">Calcular</a>.
+      </p>
+      <table class="tabla-datos">
+        <thead>
+          <tr><th>Tiempo (s)</th><th>Velocidad (m/s)</th></tr>
+        </thead>
+        <tbody id="cuerpoTablaVelocidad"></tbody>
+      </table>
+    </div>
+
+  </div><!-- fin .contenedor -->
+
+  <script src="../js/datos-experimento.js"></script>
+  <script>
+    // Tabla de distancia acumulada (13 puntos, t = 0 a 12)
+    document.getElementById('cuerpoTablaDistancia').innerHTML = DATOS_EXPERIMENTO.distanciaAcumulada.map(function (d, i) {
+      return `<tr><td>${i}</td><td>${d.toFixed(2)}</td></tr>`;
+    }).join('');
+
+    // Tabla de velocidades medidas (13 puntos)
+    document.getElementById('cuerpoTablaVelocidad').innerHTML = DATOS_EXPERIMENTO.tiempos.map(function (t, i) {
+      return `<tr><td>${t}</td><td>${DATOS_EXPERIMENTO.velocidades[i].toFixed(2)}</td></tr>`;
+    }).join('');
+  </script>
+
+</body>
+</html>
